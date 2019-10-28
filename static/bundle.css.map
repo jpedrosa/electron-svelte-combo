@@ -1,0 +1,16 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "..\\src\\App.svelte",
+    "..\\src\\ListEnvVars.svelte",
+    "..\\src\\ListFiles.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\nimport ListEnvVars from \"./ListEnvVars.svelte\";\nimport ListFiles from \"./ListFiles.svelte\";\nexport let name;\nlet route = -1;\nconst LISTFILES = -1;\nconst LISTVARS = 0;\n</script>\n\n<style>\n\th1 {\n\t\tcolor: purple;\n\t}\n</style>\n\n<h1>Hello {name}!</h1>\n{#if route === LISTVARS}\n<button on:click={() => { route = -1 }}>Close list</button><br>\nHere's your list of environment variables:<br>\n<ListEnvVars/>\n{:else}\n<button on:click={() => { route = LISTVARS }}>List environment variables</button><br>\n{/if}\n\n{#if route === LISTFILES}\nHere's your list of files:<br>\n<ListFiles/>\n{/if}\n\n",
+    "<script>\nconst envVars = process.env;\nconst keys = Object.keys(envVars);\nlet altcolor = false;\nfunction alternateColor() {\n    altcolor = !altcolor;\n    return altcolor ? \"altColor1\" : \"altColor2\";\n}\n</script>\n\n<style>\n.key {\n    font-weight: bold;\n}\n.altColor1 {\n    background-color: #C5C5C5;\n}\n.altColor2 {\n    background-color: #FFFFDD;\n}\n</style>\n\n<ul>\n{#each keys as key}\n<li class={alternateColor()}>\n<span class=\"key\">{key}: </span><span class=\"value\">{envVars[key]}</span>\n</li>\n{/each}\n</ul>\n",
+    "<script>\nconst fs = require('fs-extra');\nasync function listFiles() {\n    return fs.readdir(__dirname);\n} \nlet altcolor = false;\nfunction alternateColor() {\n    altcolor = !altcolor;\n    return altcolor ? \"altColor1\" : \"altColor2\";\n}\n</script>\n\n<style>\n.file {\n    font-weight: bold;\n}\n.altColor1 {\n    background-color: #C5C5C5;\n}\n.altColor2 {\n    background-color: #FFFFDD;\n}\n</style>\n\n{#await listFiles()}\n    Loading files...\n{:then files}\n    <ul>\n    {#each files as file}\n    <li class={alternateColor()}>\n    <span class=\"file\">{file}</span>\n    </li>\n    {/each}\n    </ul>\n{:catch error}\n    <p style=\"color: red\">{error.message}</p>\n{/await}\n"
+  ],
+  "names": [],
+  "mappings": "AAUC,EAAE,cAAC,CAAC,AACH,KAAK,CAAE,MAAM,AACd,CAAC;ACDF,IAAI,eAAC,CAAC,AACF,WAAW,CAAE,IAAI,AACrB,CAAC,AACD,UAAU,eAAC,CAAC,AACR,gBAAgB,CAAE,OAAO,AAC7B,CAAC,AACD,UAAU,eAAC,CAAC,AACR,gBAAgB,CAAE,OAAO,AAC7B,CAAC;ACND,KAAK,eAAC,CAAC,AACH,WAAW,CAAE,IAAI,AACrB,CAAC,AACD,UAAU,eAAC,CAAC,AACR,gBAAgB,CAAE,OAAO,AAC7B,CAAC,AACD,UAAU,eAAC,CAAC,AACR,gBAAgB,CAAE,OAAO,AAC7B,CAAC"
+}
