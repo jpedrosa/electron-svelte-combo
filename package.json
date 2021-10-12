@@ -11,7 +11,7 @@
   },
   "author": "Joao Pedrosa <joaopedrosa@gmail.com>",
   "devDependencies": {
-    "electron": "^7.0.0",
+    "electron": "^11.5.0",
     "rollup": "^1.26.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
