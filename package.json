@@ -17,7 +17,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-svelte": "^5.1.0",
     "rollup-plugin-terser": "^5.1.2",
-    "svelte": "^3.12.1",
+    "svelte": "^3.49.0",
     "chokidar": "^3.2.3",
     "cross-env": "^6.0.3"
   },
